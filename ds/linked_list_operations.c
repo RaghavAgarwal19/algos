@@ -53,7 +53,39 @@ void traverseList(struct node *head){
  struct node *p=head;
  printf("\nCurrent Linked List \n");
  while(p!=NULL){
-  printf("%d\t",p->data);
+  printf("%5d",p->data);
   p=p->next;
  }
+}
+
+struct node* deleteHead(struct node *head){
+ struct node *temp=head;
+ head=temp->next;
+ free(temp);
+ printf("\nDeleted head node \n");
+ return head;
+}
+
+void deleteAtEnd(struct node *head){
+ struct node *p=head,*q;
+ while(p->next!=NULL){
+  q=p;
+  p=p->next;
+ }
+ q->next=NULL;
+ free(p);
+ printf("\nDeleted Last Node \n");
+}
+
+void deleteAtMiddle(struct node *head,int pos){
+ int k=1;
+ struct node *p=head,*q;
+ while(p->next!=NULL && k<pos){
+  k++;
+  q=p;
+  p=p->next;
+ }
+ q->next=p->next;
+ free(p);
+ printf("\nDeleted node at %d position \n",pos);
 }
